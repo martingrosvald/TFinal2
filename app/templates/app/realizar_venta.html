@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas</title>
+</head>
+<body>
+
+{% if realizar_venta.errors %}
+<p style="color:red;"> Están mal los datos, revisar</p>
+{% endif %}
+
+<form action="" method="POST"> {% csrf_token %}
+<table>
+    {{realizar_venta}}
+</table>
+
+<input type="submit", value="Cargar Venta">
+
+</form>
+</body>
+</html>
