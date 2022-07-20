@@ -25,6 +25,9 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=200)
     #pais = CountryField()
 
+    def __str__(self):
+        return f"{self.apellido_nombre}"
+
 class Producto(models.Model):
     id_producto = models.IntegerField()
     nombre_producto = models.CharField(max_length=40)
@@ -45,7 +48,10 @@ class Producto(models.Model):
     #fotos_productos= models.ImageField(upload_to="productos", null=True, blank=True)
     #responsable_carga = models.CharField(max_length=40)
     fecha_creacion_producto = models.DateField()
-    #fecha_actualiz = models.DateField() 
+    #fecha_actualiz = models.DateField()
+
+    def __str__(self):
+        return f"Cod. Producto {self.id_producto} " f"Producto: {self.nombre_producto}" 
 
 class Ventas(models.Model):
     id_venta = models.IntegerField()
@@ -53,7 +59,7 @@ class Ventas(models.Model):
     id_producto = models.IntegerField()
     cantidad_producto= models.IntegerField()
     valor_total= models.IntegerField()
-    #usuario_transaccion = 
+    #usuario_transaccion = models.ForeignKey(User, on_delete=
     
 
 #class Historial_stock(models.Model):

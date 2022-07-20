@@ -7,12 +7,26 @@
     <title>Busqueda de Productos</title>
 </head>
 <body>
+<!--Esto es un Menú-->
+
+<ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="/home">Inicio</a></li>
+    <li role="presentation"><a href="/agregar_producto">Agregar Productos</a></li>
+    <li role="presentation"><a href="/listar_producto">Ver stock</a></li>
+    <li role="presentation"><a href="/busqueda_producto">Buscar en el stock</a></li>
+    <li role="presentation"><a href="/agregar_usuario">Agregar Usuario</a></li>
+    <li role="presentation"><a href="/listar_usuario">Ver usuarios</a></li>
+    <li role="presentation"><a href="/realizar_venta">Cargar venta</a></li>
+    <li role="presentation"><a href="/listar_ventas">Historial de Ventas</a></li>
+  </ul>
+  
+  <!--Esto es un contenido-->
     <h1>
         BUSQUEDA DE PRODUCTOS EN STOCK
     </h1>
 {%if formulario_busqueda %}
 
-    <form action="app/busqueda_producto/" method="GET">
+    <form action="" method="GET">
    
         {{formulario_busqueda}}
 
@@ -20,11 +34,11 @@
 
     </form>  
 {%else%}
-    {%if producto%}
+    {% if productos %}
     <ul>
-        {%for producto in producto %}
-    	    <li>{{producto.nombre_producto}}</li>
-            <li>{{producto.cantidad_producto}}</li>
+        {%for producto in productos %}
+    	    <li>Del producto {{producto.nombre_producto}} hay {{producto.cantidad_disponible}} elementos</li>
+           
         {% endfor %}
     </ul>
     {% else %}

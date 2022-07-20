@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
 <!--Esto es un Menú-->
@@ -21,18 +21,11 @@
   </ul>
   
   <!--Esto es un contenido-->
-<p>Estamos buscando el: {{producto}} </p>
-{%if producto%}
+  
+Bienvenidos al stock!
+{% block cuerpo %}
 
-{%for producto in producto %}
-<ul>
-    <li>{{producto.nombre_producto}}</li>
-    <li>{{producto.cantidad_producto}}</li>
-</ul>
-{% endfor %}
+{% endblock %}
 
-{% else %}
-<p>No hay datos con esa descripción.</p>
-{% endif %}
 </body>
 </html>

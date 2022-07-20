@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from app.forms import Agregar_Producto, Agregar_Usuario, Realizar_venta, Busqueda_Producto
 from app.models import Producto, Usuario, Ventas
 from ckeditor.fields import RichTextField
 # Create your views here.
+
+def homepage(request):
+    return render(request, 'app/index.html', {})
+
 
 def altaProducto(request):
     if request.method == 'POST':
@@ -12,7 +17,7 @@ def altaProducto(request):
             informacion = agregar_producto.cleaned_data
             producto = Producto(id_producto=informacion["id_producto"], nombre_producto=informacion["nombre_producto"], categoria_producto=informacion["categoria_producto"],marca_producto=informacion["marca_producto"],precio=informacion["precio"],cantidad_disponible=informacion["cantidad_disponible"],fecha_creacion_producto=informacion["fecha_creacion_producto"])
             producto.save()
-        return render (request, "app/listado_producto.html")
+        return redirect(reverse_lazy("listar-producto"))
     
     else:
         agregar_producto= Agregar_Producto()
@@ -73,9 +78,9 @@ def buscarProducto(request):
     formulario_busqueda = Busqueda_Producto()
     
     if request.GET:
-        formulario_busqueda = Busqueda_Producto (request.GET)
+        formulario_busqueda = Busqueda_Producto(request.GET)
         if formulario_busqueda.is_valid():
-            producto = Producto.objects.filter(nombre_producto=formulario_busqueda["criterio"]).all()
-            return render(request, "app/busqueda_producto.html", {"nombre_producto": nombre_producto})
+            productos = Producto.objects.filter(nombre_producto=formulario_busqueda.cleaned_data["criterio"]).all()
+            return render(request, "app/busqueda_producto.html", {"productos": productos})
     
     return render(request, "app/busqueda_producto.html", {"formulario_busqueda":formulario_busqueda})
