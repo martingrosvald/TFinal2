@@ -6,7 +6,13 @@ from ckeditor.fields import RichTextField
 # Create your views here.
 
 def homepage(request):
-    return render(request, 'app/index.html', {})
+    return render(request, "app/index.html", {})
+
+def mostrar_stock(request):
+    context= {}
+    
+    context["producto"] = Producto.objects.all()
+    return render(request, "app/listado_producto.html", context)
 
 
 def altaProducto(request):
@@ -23,11 +29,11 @@ def altaProducto(request):
         agregar_producto= Agregar_Producto()
     return render (request,"app/agregar_producto.html",{"agregar_producto":agregar_producto})
 
-def listar_producto(request):
-    context= {}
-    
-    context["producto"] = Producto.objects.all()
-    return render(request, "app/listado_producto.html", context)
+#def listar_producto(request):
+#    context= {}
+#    
+#    context["producto"] = Producto.objects.all()
+#    return render(request, "app/listado_producto.html", context)
 
 
 def altaUsuario(request):

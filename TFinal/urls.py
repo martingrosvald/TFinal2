@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import (altaProducto, listar_producto, altaUsuario, listar_usuario, 
-                    altaVenta, listar_ventas, buscarProducto, homepage)
+from app.views import (altaProducto, altaUsuario, listar_usuario, 
+                    altaVenta, listar_ventas, buscarProducto, homepage, mostrar_stock)
 
 urlpatterns = [
     path('', homepage, name="homepage"),
     path('home/', homepage, name="homepage"),
+    path('listar_producto/', mostrar_stock, name="listado-de-producto"),
     path('admin/', admin.site.urls),
     path('agregar_producto/', altaProducto),
-    path('listar_producto/', listar_producto, name="listado-de-producto"),
+    #path('listar_producto/', listar_producto, name="listado-de-producto"),
     path('agregar_usuario/', altaUsuario),
     path('listar_usuario/', listar_usuario),
     path('realizar_venta/', altaVenta),
