@@ -17,7 +17,7 @@ def altaProducto(request):
             informacion = agregar_producto.cleaned_data
             producto = Producto(id_producto=informacion["id_producto"], nombre_producto=informacion["nombre_producto"], categoria_producto=informacion["categoria_producto"],marca_producto=informacion["marca_producto"],precio=informacion["precio"],cantidad_disponible=informacion["cantidad_disponible"],fecha_creacion_producto=informacion["fecha_creacion_producto"])
             producto.save()
-        return redirect(reverse_lazy("listar-producto"))
+        return redirect(reverse_lazy("listado-de-producto"))
     
     else:
         agregar_producto= Agregar_Producto()
@@ -38,7 +38,7 @@ def altaUsuario(request):
             informacionu = agregar_usuario.cleaned_data
             usuario = Usuario(tipo_de_usuario=informacionu["tipo_de_usuario"], clave=informacionu["clave"], apellido_nombre=informacionu["apellido_nombre"],correo_elec=informacionu["correo_elec"],nro_celular=informacionu["nro_celular"],direccion=informacionu["direccion"])
             usuario.save()
-        return render (request, "app/listado_usuario.html")
+        return redirect(reverse_lazy("listado-de-usuario"))
     
     else:
         agregar_usuario= Agregar_Usuario()
@@ -58,7 +58,7 @@ def altaVenta(request):
             informacionv = realizar_venta.cleaned_data
             venta = Ventas(id_venta=informacionv["id_venta"], fecha_venta=informacionv["fecha_venta"], id_producto=informacionv["id_producto"],cantidad_producto=informacionv["cantidad_producto"],valor_total=informacionv["valor_total"])
             venta.save()
-        return render (request, "app/listado_ventas.html")
+        return redirect(reverse_lazy("listado-de-ventas"))
     
     else:
         realizar_venta= Realizar_venta()

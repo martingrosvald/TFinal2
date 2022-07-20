@@ -14,9 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from app.views import (altaProducto, listar_producto, altaUsuario, listar_usuario, 
-                    altaVenta, listar_ventas, buscarProducto, homepage)
+from django.urls import path, include, reverse_lazy
+from app.views import (altaProducto, listar_producto, altaUsuario, listar_usuario, altaVenta, listar_ventas, buscarProducto, homepage)
 
 urlpatterns = [
     path('', homepage, name="homepage"),
@@ -25,8 +24,8 @@ urlpatterns = [
     path('agregar_producto/', altaProducto),
     path('listar_producto/', listar_producto, name="listado-de-producto"),
     path('agregar_usuario/', altaUsuario),
-    path('listar_usuario/', listar_usuario),
+    path('listar_usuario/', listar_usuario, name="listado-de-usuario"),
     path('realizar_venta/', altaVenta),
-    path('listar_ventas/', listar_ventas),
+    path('listar_ventas/', listar_ventas, name="listado-de-ventas"),
     path('busqueda_producto/', buscarProducto),
 ]
